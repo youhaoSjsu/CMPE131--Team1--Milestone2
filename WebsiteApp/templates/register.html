@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><strong>Register</strong></h1>
+<h2>Please fill your information below<h2>
+	<form method="POST" novalidate>
+		{{ form.hidden_tag() }}
+	
+		<p> {{ form.username.label }} <br>
+		{{ form.username(size=32) }}</p>
+	
+		<p> {{ form.email.label }} <br>
+		{{ form.email(size=32) }}</p>
+
+		<p> {{ form.password.label }} <br>
+		{{ form.password(size=32) }}</p>
+	
+		<p> {{ form.confirmPassword.label }} <br>
+			{{ form.confirmPassword(size=32) }}</p>
+
+		<p> {{ form.register_button.label }} <br>
+		{{ form.register_button() }}</p>
+	
+	</form>
+{% endblock %}
