@@ -37,6 +37,19 @@
           <a class="navbar-brand btn btn-outline-success text-center" href="/login" type="button" style="width: auto;">Login</a>
         </div>
       </nav>
+      
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+          {% for m in messages %}
+          <li>{{ m }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+
+
+
   </body>
 </html>
 {% block content %}
