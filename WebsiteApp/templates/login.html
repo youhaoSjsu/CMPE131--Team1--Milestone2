@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1><strong>Sign in</strong></h1>
 
-<form method="POST" novalidate>
-    {{ form.hidden_tag() }}
+<!DOCTYPE html>
+<body>
+    <div class="text-center mx-auto d-block" style="max-width: 700px; margin-top: 10%; background-color: transparent; color: white;" id='loginBlock'>
+        <div class="col-md-8 mx-auto d-block">
+            <div class="card-body" style="color: black;">
+                <h1><strong>Sign In</strong></h1>
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+            
+                    <p> {{ form.username.label }} <br>
+                    {{ form.username(size=32) }}</p>
+                
+                    <p> {{ form.password.label }} <br>
+                    {{ form.password(size=32) }}</p>
+                
+                    <p> {{ form.remember_me() }} {{ form.remember_me.label }} </p>
+                
+                    <p> {{ form.submit() }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 
-    <p> {{ form.username.label }} <br>
-    {{ form.username(size=32) }}</p>
-
-    <p> {{ form.password.label }} <br>
-    {{ form.password(size=32) }}</p>
-
-    <p> {{ form.remember_me.label }} <br>
-    {{ form.remember_me() }}</p>
-
-    <p>{{ form.submit() }}</p>
-</form>
 {% endblock %}

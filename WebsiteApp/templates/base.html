@@ -21,7 +21,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
               <li class="nav-item">
                 <a class="nav-link" href="/home">Home</a>
               </li>
@@ -31,10 +31,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Schuedule a Task</a>
               </li>
+              {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/settings">Settings</a>
+              </li>
+              {% endif %}
             </ul>
+            {% if current_user.is_authenticated %}
+            <a class="navbar-brand btn btn-outline-dark" href="/logout" type="button" style="width: auto;">Logout</a>
+            {% else %}
+            <a class="navbar-brand btn btn-outline-secondary" href="/register" type="button" style="width: auto;">Register</a>
+            <a class="navbar-brand btn btn-outline-success" href="/login" type="button" style="width: auto;">Login</a>
+            {% endif %}
           </div>
-          <a class="navbar-brand btn btn-outline-secondary text-left" href="/register" type="button" style="width: auto;">Register</a>
-          <a class="navbar-brand btn btn-outline-success text-center" href="/login" type="button" style="width: auto;">Login</a>
         </div>
       </nav>
       
@@ -42,7 +51,7 @@
       {% if messages %}
       <ul>
           {% for m in messages %}
-          <li>{{ m }}</li>
+          <li style="color: black;">{{ m }}</li>
           {% endfor %}
       </ul>
       {% endif %}

@@ -1,10 +1,10 @@
 from flask import *  # Imports all the functions at once (render_template,flash,etc.)
 from flask_login import current_user, login_required, login_user, logout_user
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import Email
 
 from WebsiteApp import app_Obj, db
-from WebsiteApp.forms import LoginForm, RegisterForm
+from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm
 from WebsiteApp.models import User
 
 @app_Obj.route('/')
@@ -15,13 +15,10 @@ def homePage():
 @app_Obj.route("/register", methods= ['GET', 'POST'])
 def registerPage():
     form = RegisterForm()
-
     user = User.query.filter_by(email=form.email.data).first()
-
     if user is not None:
         flash('Email already exists!')
         return redirect ('/register')
-
     if form.validate_on_submit():
         if not request.form ['email'] or not request.form ['username']:
             flash('Please enter your username or email')
@@ -46,7 +43,29 @@ def loginPage():
             return redirect('/login')
 
         login_user(user, remember=form.remember_me.data)
-        flash(f'Successfull Login for requested for user {form.username.data}')
+        flash(f'Successfull Login for requested user {form.username.data}')
         return redirect('/')
 
     return render_template("login.html", form=form)
+
+@app_Obj.route("/logout", methods=['GET', 'POST'])
+@login_required
+def logoutPage():
+    logout_user()
+    flash('You have successfully logged out!')
+    return redirect('/login')
+
+@app_Obj.route("/settings", methods=['GET', 'POST'])
+@login_required
+def user_SettingsPage():
+    form = SettingsForm()
+    if form.validate_on_submit():
+        if(form.delete_account.data != f'Confirm Delete Account {current_user.email}'):
+            flash('Unable to delete account')
+        else:
+            userID = User.query.filter_by(id=current_user.id).first()
+            db.session.delete(userID)
+            db.session.commit()
+            flash('Deleted account. We hope to see you soon!')
+            return redirect('/login')
+    return render_template('settings.html',form=form)
