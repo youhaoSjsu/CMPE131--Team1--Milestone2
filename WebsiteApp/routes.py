@@ -4,8 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import Email
 
 from WebsiteApp import app_Obj, db
-from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm
-from WebsiteApp.models import User
+from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm, ToDoListForm
+from WebsiteApp.models import User, ToDoList
 
 @app_Obj.route('/')
 @app_Obj.route('/home')
@@ -69,3 +69,45 @@ def user_SettingsPage():
             flash('Deleted account. We hope to see you soon!')
             return redirect('/login')
     return render_template('settings.html',form=form)
+
+@app_Obj.route ('/todolist', methods = ['GET', 'POST'])
+def todolistPage():
+    form = ToDoListForm()
+    if request.method == 'POST':
+        task_content = request.form['task_name']
+        new_task = ToDoList (task_name = task_content)
+        try:
+            db.session.add (new_task)
+            db.session.commit()
+            return redirect('/todolist')
+        except:
+            return flash ('Error: could not add a task')
+
+    else:
+        tasks = ToDoList.query.all()
+        return render_template ("todolist.html", tasks = tasks, form=form)
+
+@app_Obj.route('/delete/<int:id>')
+def delete(id):
+    delete_task = ToDoList.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect ('/todolist')
+    except:
+        return flash ('Error: could not delete a task')
+
+@app_Obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+def update(id):
+    form = ToDoListForm()
+    task = ToDoList.query.get_or_404(id)
+    if request.method == 'POST':
+        task.task_name = request.form['task_name']
+        try:
+            db.session.commit()
+            return redirect ('/todolist')
+        except:
+            return flash('Error: could not update a task')
+    else:
+        return render_template('update.html', task = task, form=form)
+
