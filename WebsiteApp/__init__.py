@@ -15,6 +15,6 @@ app_Obj.config.from_mapping (
 
 db = SQLAlchemy(app_Obj)
 login = LoginManager(app_Obj)
-login.login_view = 'login'
+login.login_view = 'loginPage'
 
 from WebsiteApp import routes, models
