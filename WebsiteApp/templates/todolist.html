@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1><strong>To Do List </strong></h1>
+<form method = "POST" novalidate>
+	{{form.hidden_tag()}}
+	<p> {{form.task_name.label}} {{form.task_name (size=64)}}
+		{{form.add_task_button (size= 32)}} </p>
+<table>
+	<tr>
+		<th> Task </th>
+		<th> Actions </th>
+	</tr>
+	
+	{% for task in tasks %}
+	<tr>
+		<td> {{task.task_name}}</td>
+		<td>
+			<a href="delete/{{task.id}}">Delete</a>
+            <a href="update/{{task.id}}">Update</a> 
+		</td>
+	</tr>
+	{% endfor %}
+{% block body %}
+{% endblock%}
+</table>
+	
+{% endblock %}

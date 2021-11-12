@@ -20,3 +20,6 @@ class SettingsForm(FlaskForm):
     delete_account = StringField('Delete Account',validators = [DataRequired()])
     submit = SubmitField('Delete Account')
     
+class ToDoListForm(FlaskForm):
+    task_name = StringField ('Enter a task', validators = [DataRequired()])
+    add_task_button = SubmitField('Add task')
