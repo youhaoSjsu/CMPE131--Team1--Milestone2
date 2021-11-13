@@ -1,7 +1,9 @@
 # Login Form Stuff should go here
+from flask.helpers import flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo
+from wtforms.widgets.core import TextArea
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -23,3 +25,8 @@ class SettingsForm(FlaskForm):
 class ToDoListForm(FlaskForm):
     task_name = StringField ('Enter a task', validators = [DataRequired()])
     add_task_button = SubmitField('Add task')
+
+class create_FlashCardsForm(FlaskForm):
+    flashcard_name = StringField('Flash Card Name', validators = [DataRequired()])
+    flashcard_description = StringField('Flash Card Description', validators = [DataRequired()], widget=TextArea() ,render_kw={'style': 'width: 500px'},)
+    save_flashCard = SubmitField('Save Flash Card')

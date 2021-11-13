@@ -29,6 +29,14 @@ class ToDoList(UserMixin, db.Model):
     def __repr__ (self):
         return f'<Task {self.id} : {self.task_name}>'
 
+class FlashCards(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    flashCard_name = db.Column(db.String(256))
+    flashCard_description = db.Column(db.String(512))
+
+    def __repr__(self):
+        return f'<FlashCard {self.id} : {self.flashCard_name}>'
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
