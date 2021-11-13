@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" novalidate style="text-align: center;">
+    <h1 style="display: block; text-align: center;">Flash Cards Factory</h1>
+    {{form.hidden_tag()}}
+    <p> {{form.flashcard_name.label}} </br> {{form.flashcard_name (size=64)}} </p> 
+    <p> {{form.flashcard_description.label}} </br> {{form.flashcard_description (size=64)}} </p> 
+	<p>	{{form.save_flashCard (size= 32)}} </p>
+</form>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for cards in flashcards %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{cards.flashCard_name}} </h5>
+                <p class="card-text">{{cards.flashCard_description}} </p>
+                <a href='delete-flashcard/{{cards.id}}'> Edit Flash Card</a></br>
+                <a href='delete-flashcard/{{cards.id}}'> Delete Flash Card</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

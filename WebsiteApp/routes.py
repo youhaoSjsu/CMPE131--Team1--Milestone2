@@ -4,8 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import Email
 
 from WebsiteApp import app_Obj, db
-from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm, ToDoListForm
-from WebsiteApp.models import User, ToDoList
+from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm, ToDoListForm, create_FlashCardsForm
+from WebsiteApp.models import User, ToDoList, FlashCards
 
 @app_Obj.route('/')
 @app_Obj.route('/home')
@@ -75,14 +75,13 @@ def todolistPage():
     form = ToDoListForm()
     if request.method == 'POST':
         task_content = request.form['task_name']
-        new_task = ToDoList (task_name = task_content)
+        new_task = ToDoList(task_name = task_content)
         try:
             db.session.add (new_task)
             db.session.commit()
             return redirect('/todolist')
         except:
             return flash ('Error: could not add a task')
-
     else:
         tasks = ToDoList.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form)
@@ -109,5 +108,29 @@ def update(id):
         except:
             return flash('Error: could not update a task')
     else:
-        return render_template('update.html', task = task, form=form)
+        return render_template('update.html', task = task, form=form) 
 
+@app_Obj.route('/create-edit-flashcards', methods = ['GET', 'POST'])
+def create_flashcards():
+    form = create_FlashCardsForm()
+    if form.validate_on_submit():
+        new_flashCard = FlashCards(flashCard_name = form.flashcard_name.data, flashCard_description = form.flashcard_description.data)
+        try:
+            db.session.add(new_flashCard)
+            db.session.commit()
+            return redirect('/create-edit-flashcards')
+        except:
+            return flash ('Error: Unable to save Flash Card!')
+    else:
+        flashcards = FlashCards.query.all()
+        return render_template('flashcard.html',form=form, flashcards=flashcards) 
+
+@app_Obj.route('/delete-flashcard/<int:id>')
+def delete_flashCard(id):
+    delete_flashCard = FlashCards.query.get_or_404(id)
+    try:
+        db.session.delete(delete_flashCard)
+        db.session.commit()
+        return redirect ('/create-edit-flashcards')
+    except:
+        return flash ('Error: Unable to delete Flash Card!')
