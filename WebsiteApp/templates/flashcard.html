@@ -8,14 +8,14 @@
 	<p>	{{form.save_flashCard (size= 32)}} </p>
 </form>
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="row row-cols-1 row-cols-md-4 g-4" style="margin-left: 10px; margin-right: 10px;">
     {% for cards in flashcards %}
     <div class="col">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title"> {{cards.flashCard_name}} </h5>
                 <p class="card-text">{{cards.flashCard_description}} </p>
-                <a href='delete-flashcard/{{cards.id}}'> Edit Flash Card</a></br>
+                <a href='edit-flashcard/{{cards.id}}'> Edit Flash Card</a></br>
                 <a href='delete-flashcard/{{cards.id}}'> Delete Flash Card</a>
             </div>
         </div>

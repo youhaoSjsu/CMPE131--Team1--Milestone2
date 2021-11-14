@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block content %}
+{% block body %}
+<div class = "card_name">
+	<h3> <strong> Update Flash Card </strong> </h3>
+	<form action = "/edit-flashcard/{{update_flashCard.id}}" method = "POST">
+		<input type = "text" name = "flashCard_name" id ="flashCard_name" value = "{{update_flashCard.content}}">
+		<input type = "text" name = "flashCard_description" id ="flashCard_description" value = "{{update_flashCard.content}}">
+        <input type = "submit" value = "Update">
+	</form>
+</div>
+{% endblock %}
+{% endblock %}
