@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+    <div style="margin-top: 15px; margin-left: 15px; margin-bottom: -15px;"> 
+        <a href="/share-flashcards" > Share Flashcards </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 10px; margin-left: 5px; margin-right: 5px;">
+        {% for cards in flashcards %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> {{cards.flashCard_name}} </h5>
+                    <p class="card-text"> {{cards.flashCard_description}} </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}

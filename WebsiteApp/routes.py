@@ -134,3 +134,23 @@ def delete_flashCard(id):
         return redirect ('/create-edit-flashcards')
     except:
         return flash ('Error: Unable to delete Flash Card!')
+    
+@app_Obj.route('/edit-flashcard/<int:id>', methods = ['GET', 'POST'])
+def edit_flashCard(id):
+    update_flashCard = FlashCards.query.get_or_404(id)
+    print(update_flashCard)
+    if request.method == 'POST':
+        update_flashCard.flashCard_name = request.form['flashCard_name']
+        update_flashCard.flashCard_description = request.form['flashCard_description']
+        try:
+            db.session.commit()
+            return redirect ('/create-edit-flashcards')
+        except:
+            return flash('Error: could not update a flashcard')
+    else:
+        return render_template('update_flashcard.html', update_flashCard = update_flashCard) 
+
+@app_Obj.route('/view-flashcards')
+def view_flashCards():
+    flashcards = FlashCards.query.all()
+    return render_template('view_flashcards.html',flashcards=flashcards)
