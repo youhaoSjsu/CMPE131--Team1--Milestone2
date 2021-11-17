@@ -1,12 +1,12 @@
 from flask import *  # Imports all the functions at once (render_template,flash,etc.)
 from flask_login import current_user, login_required, login_user, logout_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from wtforms.validators import Email
 from flask_mail import Mail, Message
 
 from WebsiteApp import app_Obj, db
 from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm, ToDoListForm, create_FlashCardsForm
-from WebsiteApp.models import User, ToDoList, FlashCards
+from WebsiteApp.models import FlashCards, ToDoList, User
 
 @app_Obj.route('/')
 @app_Obj.route('/home')
@@ -139,7 +139,7 @@ def delete_flashCard(id):
 @app_Obj.route('/edit-flashcard/<int:id>', methods = ['GET', 'POST'])
 def edit_flashCard(id):
     update_flashCard = FlashCards.query.get_or_404(id)
-    print(update_flashCard)
+    
     if request.method == 'POST':
         update_flashCard.flashCard_name = request.form['flashCard_name']
         update_flashCard.flashCard_description = request.form['flashCard_description']
