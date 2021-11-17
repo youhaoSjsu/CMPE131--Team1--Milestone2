@@ -1,13 +1,34 @@
 {% extends 'base.html'%}
 {% block content %}
 {% block body %}
-<div class = "card_name">
-	<h3> <strong> Update Flash Card </strong> </h3>
-	<form action = "/edit-flashcard/{{update_flashCard.id}}" method = "POST">
-		<input type = "text" name = "flashCard_name" id ="flashCard_name" value = "{{update_flashCard.content}}">
-		<input type = "text" name = "flashCard_description" id ="flashCard_description" value = "{{update_flashCard.content}}">
-        <input type = "submit" value = "Update">
-	</form>
+<div class="container">
+	<div class="card-columns d-flex justify-content-center">	
+		<div class="card-body">
+			<div class="card border-danger mb-3">
+				<div class="card-header bg-transparent border-danger" style="color: red;">Old Flash Card Data</div>
+				<div class="card-body text-danger">
+					<h5 class="card-title"> Title: {{update_flashCard.flashCard_name}} </h5>
+					<p class="card-text"> Description: {{update_flashCard.flashCard_description}} </p>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="card border-success mb-3" style="max-width: 18rem;">
+				<div class="card-header bg-transparent border-success" style="color: green;"> New Flash Card Data</div>
+				<div class="card-body text-success">
+					<form action = "/edit-flashcard/{{update_flashCard.id}}" method = "POST">
+						<h5 class="card-title">
+							Title: <input type = "text" name = "flashCard_name" id ="flashCard_name" required>
+						</h5>
+						<h5 class="card-text">
+							Description: <textarea type = "text" name = "flashCard_description" id ="flashCard_description" style="height: 200px; width: 225px;" required></textarea>
+						</h5>
+						<input class="btn btn-success" type="submit" value="Update">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 {% endblock %}
