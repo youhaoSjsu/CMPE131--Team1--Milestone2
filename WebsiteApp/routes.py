@@ -2,6 +2,7 @@ from flask import *  # Imports all the functions at once (render_template,flash,
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import Email
+from flask_mail import Mail, Message
 
 from WebsiteApp import app_Obj, db
 from WebsiteApp.forms import LoginForm, RegisterForm, SettingsForm, ToDoListForm, create_FlashCardsForm
@@ -154,3 +155,19 @@ def edit_flashCard(id):
 def view_flashCards():
     flashcards = FlashCards.query.all()
     return render_template('view_flashcards.html',flashcards=flashcards)
+
+@app_Obj.route('/send_message', methods=['GET', 'POST'])
+def send_message():
+    if  request.method == "POST":
+        email = request.form['email']
+        subject = request.form['subject']
+        msg = request.form['message']
+
+        message = Message(subject, sender="huynhkhuong8203@gmail.com", recipients=[email])
+        message.body = msg
+
+        #send mail
+        mail.send(message)
+        success = "Message Sent"
+    else:
+        return render_template("email.html", send_message=send_message)
