@@ -162,18 +162,15 @@ def view_flashCards():
 @app_Obj.route('/send_message', methods=['GET', 'POST'])
 def send_message():
     if  request.method == "POST":
-        try:
-            email = str(request.form['email'])
-            subject = str(request.form['subject'])
-            msg_body = str(request.form['message'])
+        email = request.form['email']
+        subject = request.form['subject']
+        msg = request.form['message']
 
-            message = Message(subject, sender="teamonecmpe131@gmail.com", recipients=[email])
-            message.body = msg_body
-            mail.send(message) #Sends email
-            flash("Email Sent!")
-            return redirect('/')
-            
-        except ConnectionRefusedError as connectionRefusedError_:
-            return "Failed to send Email. Please try again later!"
+        message = Message(subject, sender="nonreply@demo.com", recipients=['briannhuynh2021@gmail.com'])
+        message.body = msg
+
+        #send mail
+        mail.send(message)
+        return "Message Sent"
     else:
-        return render_template("email.html")
+        return render_template("email.html", send_message=send_message)

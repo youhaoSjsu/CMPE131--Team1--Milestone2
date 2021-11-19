@@ -2,25 +2,24 @@
 
 {% block content %}
 <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendMail</title>   
+</head>
 <body>
-    <div class="text-center mx-auto d-block">
-        <div class="col-md-8 mx-auto d-block">
-            <div class="card-body">
-                <h3 class="card-title text-center">Send Email</h3>
-                <form action="/send_message" method="POST">
-                    <label class="text-center"> Recipient Email Address </label>
-                    <input type="email" class="form-control" placeholder="Please enter recipient email!" name="email"></input>
-
-                    <label class="text-center"> Subject </label>
-                    <input type="text" class="form-control" placeholder="Please enter email Subject!" name="subject"></input>
-
-                    <label class="text-center"> Email Body </label></br>
-                    <textarea name="email" name="message" cols="108" placeholder="Message Body" required rows="10"></textarea>
-                    <input class="btn btn-success" type="submit" style="margin-top: 15px; margin-bottom: 15px; margin-right: 15px;" value="Send Email" name="message">
-                </form>
-            </div>
-        </div>
-    </div>
+    <h1>Mail Sending App</h1>
+    <form action="{{url_for('send_message')}}" method="POST">
+        <input type="email" name="email" placeholder="Email" id="">
+        <input type="text" name="subject" placeholder="Subject" required id="">
+        <textarea name="message" id="" cols="30" placeholder="Message Body" required rows="10"></textarea>
+        <button>Send Mail</button>
+    </form>
 </body>
 </html>
+
 {% endblock %}
+
