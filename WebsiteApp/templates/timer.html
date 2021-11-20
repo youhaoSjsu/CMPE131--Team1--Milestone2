@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block content %}
+<h1><strong>Pomodoro </strong></h1>
+<!-- <form method="POST" novalidate>
+  {{form.hidden_tag()}}
+  <p>{{form.study_time.label}} {{form.study_time (size=64)}}</p>
+  <p>{{form.start_button}}</p>
+</form> -->
+
+<body>
+  <div id="txt"></div>
+  
+    <strong>Set Timer (in minutes):</strong> <input id="userInput" type="number" value="0" />
+  </p>
+  <button onclick="start()">Start</button>
+  <button onclick="stop()">Stop</button>
+  <p id="timer1">0000</p>
+  <script>
+    //countdown timer
+    var countdownTimer;
+    var timer = document.getElementById("userInput");
+    var myTimer;
+    function start() {
+      countdownTimer = setInterval(startTimer, 1000);
+      document.getElementById("timer1").innerHTML = timer.value;
+      myTimer = timer.value * 60;
+    }
+    function startTimer() {
+      myTimer--;
+      document.getElementById("timer1").innerHTML = myTimer;
+      if (myTimer == -1) {
+        stop();
+        document.getElementById("timer1").innerHTML = "0";
+      }
+    }
+    function stop() {
+      clearInterval(countdownTimer);
+    }
+    // display real live time
+    function startTime() {
+      const today = new Date();
+      let h = today.getHours();
+      let m = today.getMinutes();
+      let s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById("txt").innerHTML = h + ":" + m + ":" + s;
+      setTimeout(startTime, 1000);
+    }
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+    setInterval(function () {
+      startTime();
+    }, 500);
+  </script>
+
+  {% endblock %}
+</body>
