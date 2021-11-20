@@ -1,0 +1,18 @@
+<body>
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 10px; margin-left: 5px; margin-right: 5px;">
+        {% for cards in flashcards %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <label>
+                        <h5 class="card-title"> {{cards.flashCard_name}} </h5>           
+                        <p class="card-text"> {{cards.flashCard_description}} </p>       
+                        |==================================================================|
+                    </label>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
