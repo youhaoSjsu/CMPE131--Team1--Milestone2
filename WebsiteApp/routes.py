@@ -1,3 +1,7 @@
+from datetime import datetime
+import time
+import pyttsx3
+
 from flask import *  # Imports all the functions at once (render_template,flash,etc.)
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
@@ -5,8 +9,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.wrappers import response
 
 from WebsiteApp import app_Obj, db, mail
-from WebsiteApp.forms import (LoginForm, RegisterForm, SettingsForm,
-                              ToDoListForm, create_FlashCardsForm)
+from WebsiteApp.forms import (LoginForm, RegisterForm, SettingsForm, ToDoListForm, create_FlashCardsForm , pomorodoTimerForm )
 from WebsiteApp.models import FlashCards, ToDoList, User
 
 
@@ -196,4 +199,29 @@ def share_flashCards():
             return "Failed to send Email. Please try again later!"
     else:
         return render_template("view_flashcards.html")
-    
+
+@app_Obj.route('/timer', methods = ['GET', 'POST'])
+def pomodoro ():
+    form = pomorodoTimerForm()
+    if request.method == 'POST':
+        try: 
+            study_time = (request.form ["study_time"])
+            #break_time = (request.form ["break_time"])
+            timer (int(study_time))
+            return redirect ("/timer")
+        except:
+            return flash ('Fail to load timer')
+    else: 
+        return render_template ("timer.html", form = form)
+
+def timer (t):
+    # t = 25*60
+    while t:
+        mins, secs = divmod (t, 60)
+        timer = '{:02d}: {:02d}'.format (mins, secs)
+        print (timer, end = "\r")
+        time.sleep(1)
+        t -=1
+    pyttsx3.speak ("beep beep beep beep time to work")
+    return t
+
