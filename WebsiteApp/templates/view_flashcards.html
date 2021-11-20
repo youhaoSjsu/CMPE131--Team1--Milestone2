@@ -2,10 +2,39 @@
 {% block content %}
 
 <body>
-    <div style="margin-top: 15px; margin-left: 15px; margin-bottom: -15px;"> 
-        <form method="POST" novalidate>
-            <a href="/share-flashcards" > Share Flashcards </a>
-        </form>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShareFlashCardsModal" style="margin-top: 15px; margin-left: 25px; margin-bottom: -15px;">
+        Share Flash Cards
+    </button>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="ShareFlashCardsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Email Flash Cards</h5>
+                </div>
+                <form action="/share-flashcards" method="POST">
+                    <div class="modal-body">
+                            <h5 class="text-center"> Recipient Email Address </h5>
+                            <input type="email" class="form-control" placeholder="Please enter recipient email!" name="email"></input>
+        
+                            <h5 class="text-center" style="margin-top: 5px; margin-bottom: -15px;"> Subject: Flash Cards </h5></br>
+
+                            <h5 class="text-center" style="margin-bottom: -15px;"> Email Body </h5></br>
+                            <a class="text-center"> Flashcards.pdf </a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button>
+                        <input class="btn btn-success" type="submit" style="margin-top: 15px; margin-bottom: 15px; margin-right: 15px;" value="Send Email">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 10px; margin-left: 5px; margin-right: 5px;">
