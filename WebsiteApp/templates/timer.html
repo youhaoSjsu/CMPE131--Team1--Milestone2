@@ -14,26 +14,35 @@
   <button onclick="start()">Start</button>
   <button onclick="stop()">Stop</button>
   <p id="timer1">0000</p>
+  <audio id="timeout_audio" src ="beepbeep.mp3" autoplay ="False"></audio>
   <script>
     //countdown timer
+    const timeoutAudio = document.getElementById("timeout_audio");
     var countdownTimer;
     var timer = document.getElementById("userInput");
     var myTimer;
+    
+    
     function start() {
       countdownTimer = setInterval(startTimer, 1000);
       document.getElementById("timer1").innerHTML = timer.value;
       myTimer = timer.value * 60;
     }
+    // timeoutAudio.src = "beepbeep.mp3";
+    timeoutAudio.load();
+
     function startTimer() {
       myTimer--;
       document.getElementById("timer1").innerHTML = myTimer;
       if (myTimer == -1) {
         stop();
         document.getElementById("timer1").innerHTML = "0";
+        alert ('Time is up!');
       }
     }
     function stop() {
       clearInterval(countdownTimer);
+      timeoutAudio.play();
     }
     // display real live time
     function startTime() {
