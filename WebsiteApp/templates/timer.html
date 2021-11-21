@@ -1,19 +1,14 @@
 {% extends "base.html" %} {% block content %}
-<h1><strong>Pomodoro </strong></h1>
-<!-- <form method="POST" novalidate>
-  {{form.hidden_tag()}}
-  <p>{{form.study_time.label}} {{form.study_time (size=64)}}</p>
-  <p>{{form.start_button}}</p>
-</form> -->
 
-<body>
-  <div id="txt"></div>
+<body class="text-center">
+  <h1 style="color: black;"><strong> Pomodoro </strong></h1>
+  <div id="txt" style="color: black; margin-bottom: 15px;"></div>
   
-    <strong>Set Timer (in minutes):</strong> <input id="userInput" type="number" value="0" />
+    <strong style="color: black;">Set Timer (in minutes):</strong> <input id="userInput" type="number" value="0" />
   </p>
   <button onclick="start()">Start</button>
   <button onclick="stop()">Stop</button>
-  <p id="timer1">0000</p>
+  <p style="color: black;" id="timer1">0000</p>
   <audio id="timeout_audio" src ="beepbeep.mp3" autoplay ="False"></audio>
   <script>
     //countdown timer
