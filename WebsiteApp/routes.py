@@ -235,3 +235,6 @@ def timer (t):
     pyttsx3.speak ("beep beep beep beep time to work")
     return t
 
+@app_Obj.route('/hint', methods = ['GET', 'POST'])
+def hintPage():
+    return render_template("hint.html")
