@@ -1,0 +1,15 @@
+site_name: Team 1 - Learning Tool
+site_url: https://team1.com
+nav:
+  - Home: index.md
+  - Login: login.md
+  - Register: register.md
+  - Delete Account: delete.md
+  - Share Flash Card: shareflashcard.md
+  - Email Users: emailusers.md
+  - To-do List: todolist.md
+  - Pomodoro Timer: pomodorotimer.md
+  - Break Alert: breakalert.md
+  - Give Hint: givehint.md
+  - Light/Dark Mode: lightdarkmode.md
+theme: readthedocs

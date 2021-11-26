@@ -1,0 +1,35 @@
+# Give Hint page
+
+### Give hint function
+
+### HTML page
+
+```
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" novalidate style="text-align: center;">
+    <h1 style="display: block; text-align: center; color:black;">Flash Cards Factory</h1>
+    {{form.hidden_tag()}}
+    <p style="color:black"> {{form.flashcard_name.label}} </br> {{form.flashcard_name (size=64)}} </p>
+    <p style="color:black"> {{form.flashcard_description.label}} </br> {{form.flashcard_description (size=64)}} </p>
+        <p>     {{form.save_flashCard (size= 32)}} </p>
+</form>
+
+<div class="row row-cols-1 row-cols-md-4 g-4" style="margin-left: 10px; margin-right: 10px;">
+    {% for cards in flashcards %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{cards.flashCard_name}} </h5>
+                <p class="card-text">{{cards.flashCard_description}} </p>
+                <a href='edit-flashcard/{{cards.id}}'> Edit Flash Card</a></br>
+                <a href='delete-flashcard/{{cards.id}}'> Delete Flash Card</a>
+		<a href="view-flashcards" class="btn btn-primary">View Hints</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+```
