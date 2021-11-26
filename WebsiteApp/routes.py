@@ -127,7 +127,7 @@ def create_flashcards():
     title = "Create-Edit Flash Cards"
 
     if form.validate_on_submit():
-        new_flashCard = FlashCards(flashCard_name = form.flashcard_name.data, flashCard_description = form.flashcard_description.data)
+        new_flashCard = FlashCards(flashCard_name = form.flashcard_name.data, flashCard_description = form.flashcard_description.data, flashCard_hint=form.flashcard_hint.data)
         try:
             db.session.add(new_flashCard)
             db.session.commit()
@@ -234,7 +234,3 @@ def timer (t):
         t -=1
     pyttsx3.speak ("beep beep beep beep time to work")
     return t
-
-@app_Obj.route('/hint', methods = ['GET', 'POST'])
-def hintPage():
-    return render_template("hint.html")
