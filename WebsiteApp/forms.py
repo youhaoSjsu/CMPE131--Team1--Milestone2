@@ -29,6 +29,7 @@ class ToDoListForm(FlaskForm):
 class create_FlashCardsForm(FlaskForm):
     flashcard_name = StringField('Flash Card Name', validators = [DataRequired()])
     flashcard_description = StringField('Flash Card Description', validators = [DataRequired()], widget=TextArea() ,render_kw={'style': 'width: 500px'},)
+    flashcard_hint = StringField('Flash Card Hint', validators = [DataRequired()])
     save_flashCard = SubmitField('Save Flash Card')
 
 
