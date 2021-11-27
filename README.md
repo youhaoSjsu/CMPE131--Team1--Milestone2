@@ -12,6 +12,10 @@ Welcome to Learning Tool - CMPE131 Project
 
   - Share Flash Cards
 
+  - Show Hints when user needs
+
+  - Time spent on a task
+
   - Email Users
 
   - To-do List
