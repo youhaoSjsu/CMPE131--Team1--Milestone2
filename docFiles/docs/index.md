@@ -4,6 +4,27 @@ An introductory on how to run the website
 
 ### Installation
 
+In order to view the mkdocs, you need to type these commands in the terminal
+
+```bash
+pip install mkdocs
+```
+
+After create a new project in your mkdoc, change your directory into the file, then run this command
+
+```bash
+mkdocs serve
+```
+
+You see a link similar to this
+
+![screenshot](img/mkdocserve.png)
+
+You then can use the link to view our markdown files (below is our home page in mkdocs)
+![screenshot](img/homepage.png)
+
+### Other requirement installs
+
 Below is the list that viewers need to install in order to run the website
 
 ```bash

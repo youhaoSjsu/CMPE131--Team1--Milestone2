@@ -82,7 +82,7 @@ class ToDoList(UserMixin, db.Model):
 
 ### HTML page
 
-Create a task page
+Create a task page todolist.html
 
 ```
 {% extends "base.html" %}
@@ -116,7 +116,7 @@ Create a task page
 
 ```
 
-Update page
+Update page update.html
 
 ```
 {% extends 'base.html'%}

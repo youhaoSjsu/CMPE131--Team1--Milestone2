@@ -116,8 +116,9 @@ class create_FlashCardsForm(FlaskForm):
 
 ### HTML page
 
-```
+Create flash card page flashcard.html
 
+```
 {% extends 'base.html'%}
 {% block content %}
 {% block body %}
@@ -153,4 +154,27 @@ class create_FlashCardsForm(FlaskForm):
 </div>
 {% endblock %}
 {% endblock %}
+```
+
+Share flashcards page share_flashcards.html
+
+```
+<body>
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 10px; margin-left: 5px; margin-right: 5px;">
+        {% for cards in flashcards %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <label>
+                        <h5 class="card-title"> {{cards.flashCard_name}} </h5>
+                        <p class="card-text"> {{cards.flashCard_description}} </p>
+                        |==================================================================|
+                    </label>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
 ```
