@@ -23,5 +23,17 @@
         </div>
     </div>
     {% endfor %}
+    <script>
+        setTimeout(function confirmAction() {
+          let confirmAction = confirm(
+            "You've studied for one hour. Do you want to take a break?"
+          );
+          if (confirmAction) {
+            alert("Enjoy your break!");
+          } else {
+            alert("Have a good study!");
+          }
+        }, 3600000);
+      </script>
 </div>
 {% endblock %}
