@@ -51,7 +51,7 @@ def loginPage():
             return redirect('/login')
 
         login_user(user, remember=form.remember_me.data)
-        flash(f'Successfull Login for requested user {form.username.data}')
+        flash(f'Successfull Login for requested user {form.username.data} at {time.strftime("%H:%M:%S")}')
         return redirect('/')
 
     return render_template("login.html", form=form,title=title)

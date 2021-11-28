@@ -1,29 +1,61 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-    <body> 
-        <div class="container-fluid">
-            <h1 style="color: black;" class="text-center">
-                Learning Tool - CMPE 131 Project
-            </h1>
-            <div class="text-center" style="color: black">
-                <img src="/static/cmpe131.png" id='Sample_Image' width="200" height="200">
-                <h1>Features</h1>
-            </div>
-            <div style="margin-top: 15px;color: black">
-                <ul class="text-center" style="margin-left: -70px;">
-                    <ol> Register/Login Function </ol>
-                    <ol> Delete account </ol>
-                    <ol> Share Flash Cards </ol>
-                    <ol> Email Users </ol>
-                    <ol> To-Do-List  </ol>
-                    <ol> Timer </ol>
-                    <ol> Break Alerts </ol>
-                    <ol> Light + Dark Mode </ol>
-                </ul>
-            </div>
-        </div>
-    </body>
+  <body>
+    <div class="container-fluid">
+      <h1 style="color: black" class="text-center">
+        Learning Tool - CMPE 131 Project
+      </h1>
+      <div class="text-center" style="color: black">
+        <img
+          src="/static/cmpe131.png"
+          id="Sample_Image"
+          width="200"
+          height="200"
+        />
+        <h1>Features</h1>
+      </div>
+      <div style="margin-top: 15px; color: black">
+        <ul class="text-center" style="margin-left: -70px">
+          <ol>
+            Register/Login Function
+          </ol>
+          <ol>
+            Delete account
+          </ol>
+          <ol>
+            Share Flash Cards
+          </ol>
+          <ol>
+            Email Users
+          </ol>
+          <ol>
+            To-Do-List
+          </ol>
+          <ol>
+            Timer
+          </ol>
+          <ol>
+            Break Alerts
+          </ol>
+          <ol>
+            Light + Dark Mode
+          </ol>
+        </ul>
+      </div>
+    </div>
+    <script>
+      setTimeout(function confirmAction() {
+        let confirmAction = confirm(
+          "You've studied for one hour. Do you want to take a break?"
+        );
+        if (confirmAction) {
+          alert("Enjoy your break!");
+        } else {
+          alert("Have a good study!");
+        }
+      }, 3600000);
+    </script>
+  </body>
 </html>
 {% endblock %}
