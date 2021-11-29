@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block content %}
+{% block body %}
+<div class = "task_name">
+	<h3> <strong> Start {{task.task_name}} </strong> </h3>
+	<form action = "/start/{{task.id}}" method = "POST">
+		<p>   click here to start working</p> 
+		<input type ="button" value="start" onclick = "alert('started') ;sTimer(id)">
+		<input type ="button" value="finish" onclick = "alert('task finished') ;eTimer(id) ">
+		<p>{{startData['hours']}}</p>
+		
+	</form>
+</div>
+{% endblock %}
+{% endblock %}
